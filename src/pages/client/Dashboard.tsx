@@ -51,7 +51,7 @@ export default function Dashboard() {
           <h1 className="text-3xl font-bold text-foreground">Welcome, DesignX Ltd</h1>
           <p className="text-muted-foreground">Here's a summary of your projects with us.</p>
         </div>
-        <Link to="/submit">
+        <Link to="/client/submit">
           <Button>
             <PlusCircle className="mr-2 h-4 w-4" />
             Submit New Request

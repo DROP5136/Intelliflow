@@ -81,7 +81,7 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column - Profile Card is now self-sufficient via context */}
         <div className="lg:col-span-1">
-          <Link to="/profile" className="focus-ring rounded-lg block">
+          <Link to="/employee/profile" className="focus-ring rounded-lg block">
             <ProfileCard />
           </Link>
         </div>
@@ -96,7 +96,7 @@ export default function Dashboard() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-2xl font-semibold text-foreground">Recent Tasks</h2>
-          <Link to="/tasks">
+          <Link to="/employee/tasks">
             <Button variant="outline" className="group">
               View All Tasks
               <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />

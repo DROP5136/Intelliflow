@@ -5,9 +5,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { UserProvider } from "./contexts/UserContext";
 
-// Layouts
+// Layouts and Common Components
 import { PortalLayout } from "./components/common/layout/PortalLayout";
-import { ManagerLayout } from "./components/manager/ManagerLayout";
+import { ProtectedRoute } from "./components/common/ProtectedRoute";
 
 // Sidebars
 import { ClientSidebar } from "./components/client/ClientSidebar";
@@ -54,33 +54,41 @@ const App = () => (
             <Route
               path="/client"
               element={
-                <PortalLayout sidebar={<ClientSidebar />}>
-                  <ClientDashboard />
-                </PortalLayout>
+                <ProtectedRoute allowedRole="client">
+                  <PortalLayout sidebar={<ClientSidebar />}>
+                    <ClientDashboard />
+                  </PortalLayout>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/client/projects"
               element={
-                <PortalLayout sidebar={<ClientSidebar />}>
-                  <ClientProjects />
-                </PortalLayout>
+                <ProtectedRoute allowedRole="client">
+                  <PortalLayout sidebar={<ClientSidebar />}>
+                    <ClientProjects />
+                  </PortalLayout>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/client/submit"
               element={
-                <PortalLayout sidebar={<ClientSidebar />}>
-                  <ClientSubmitRequest />
-                </PortalLayout>
+                <ProtectedRoute allowedRole="client">
+                  <PortalLayout sidebar={<ClientSidebar />}>
+                    <ClientSubmitRequest />
+                  </PortalLayout>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/client/profile"
               element={
-                <PortalLayout sidebar={<ClientSidebar />}>
-                  <ClientProfile />
-                </PortalLayout>
+                <ProtectedRoute allowedRole="client">
+                  <PortalLayout sidebar={<ClientSidebar />}>
+                    <ClientProfile />
+                  </PortalLayout>
+                </ProtectedRoute>
               }
             />
 
@@ -88,25 +96,31 @@ const App = () => (
             <Route
               path="/employee"
               element={
-                <PortalLayout sidebar={<EmployeeSidebar />}>
-                  <EmployeeDashboard />
-                </PortalLayout>
+                <ProtectedRoute allowedRole="employee">
+                  <PortalLayout sidebar={<EmployeeSidebar />}>
+                    <EmployeeDashboard />
+                  </PortalLayout>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/employee/tasks"
               element={
-                <PortalLayout sidebar={<EmployeeSidebar />}>
-                  <EmployeeTasks />
-                </PortalLayout>
+                <ProtectedRoute allowedRole="employee">
+                  <PortalLayout sidebar={<EmployeeSidebar />}>
+                    <EmployeeTasks />
+                  </PortalLayout>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/employee/profile"
               element={
-                <PortalLayout sidebar={<EmployeeSidebar />}>
-                  <EmployeeProfile />
-                </PortalLayout>
+                <ProtectedRoute allowedRole="employee">
+                  <PortalLayout sidebar={<EmployeeSidebar />}>
+                    <EmployeeProfile />
+                  </PortalLayout>
+                </ProtectedRoute>
               }
             />
 
@@ -114,41 +128,51 @@ const App = () => (
             <Route
               path="/manager"
               element={
-                <ManagerLayout>
-                  <ManagerDashboard />
-                </ManagerLayout>
+                <ProtectedRoute allowedRole="manager">
+                  <PortalLayout sidebar={<ManagerSidebar />}>
+                    <ManagerDashboard />
+                  </PortalLayout>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/manager/projects"
               element={
-                <ManagerLayout>
-                  <ManagerProjects />
-                </ManagerLayout>
+                <ProtectedRoute allowedRole="manager">
+                  <PortalLayout sidebar={<ManagerSidebar />}>
+                    <ManagerProjects />
+                  </PortalLayout>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/manager/team"
               element={
-                <ManagerLayout>
-                  <ManagerTeam />
-                </ManagerLayout>
+                <ProtectedRoute allowedRole="manager">
+                  <PortalLayout sidebar={<ManagerSidebar />}>
+                    <ManagerTeam />
+                  </PortalLayout>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/manager/profile"
               element={
-                <ManagerLayout>
-                  <ManagerProfile />
-                </ManagerLayout>
+                <ProtectedRoute allowedRole="manager">
+                  <PortalLayout sidebar={<ManagerSidebar />}>
+                    <ManagerProfile />
+                  </PortalLayout>
+                </ProtectedRoute>
               }
             />
             <Route
               path="/manager/projects/:projectId"
               element={
-                <ManagerLayout>
-                  <ProjectDetails />
-                </ManagerLayout>
+                <ProtectedRoute allowedRole="manager">
+                  <PortalLayout sidebar={<ManagerSidebar />}>
+                    <ProjectDetails />
+                  </PortalLayout>
+                </ProtectedRoute>
               }
             />
 
