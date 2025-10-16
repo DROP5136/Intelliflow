@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { StatusBadge } from "@/components/ui/status-badge";
 import { Link, useNavigate } from "react-router-dom";
 import { Skeleton } from "@/components/ui/skeleton";
 import { loadProjects, loadEmployees, loadTasks } from '@/utils/dataParser';
@@ -98,15 +99,18 @@ export default function ManagerDashboard() {
             <div className="space-y-4">
               {pendingProjects.map((project) => (
                 <div key={project.project_id} className="flex items-center justify-between p-4 rounded-lg border">
-                  <div>
+                  <div className="space-y-1">
                     <h3 className="font-semibold">{project.project_title}</h3>
                     <p className="text-sm text-muted-foreground">{project.client_name}</p>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Link to={`/manager/projects/${project.project_id}`}>
-                      <Button variant="outline" size="sm">Review</Button>
-                    </Link>
-                    <Button size="sm">Approve</Button>
+                  <div className="flex items-center gap-4">
+                    <StatusBadge status={project.status} variant="project" />
+                    <div className="flex items-center gap-2">
+                      <Link to={`/manager/projects/${project.project_id}`}>
+                        <Button variant="outline" size="sm">Review</Button>
+                      </Link>
+                      <Button size="sm">Approve</Button>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -128,10 +132,16 @@ export default function ManagerDashboard() {
         <CardContent>
           <div className="space-y-4">
             {activeProjects.map((project) => (
-              <div key={project.project_id} className="space-y-2">
-                <div className="flex justify-between items-center">
+              <div key={project.project_id} className="flex items-center justify-between p-4 rounded-lg border">
+                <div className="space-y-1">
                   <h3 className="font-semibold">{project.project_title}</h3>
-                  <Badge variant='secondary'>{project.status}</Badge>
+                  <p className="text-sm text-muted-foreground">{project.client_name}</p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <StatusBadge status={project.status} variant="project" />
+                  <Link to={`/manager/projects/${project.project_id}`}>
+                    <Button variant="outline" size="sm">View</Button>
+                  </Link>
                 </div>
               </div>
             ))}

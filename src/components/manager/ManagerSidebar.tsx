@@ -18,7 +18,7 @@ const navigationItems = [
     url: "/manager/projects",
     icon: FolderKanban,
     description: "Project Management",
-    exact: true
+    exact: false
   },
   {
     title: "My Team",

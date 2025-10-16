@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
+import { StatusBadge } from "@/components/ui/status-badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
@@ -87,7 +88,7 @@ export default function ManagerProjects() {
                     <TableCell>{project.client_name}</TableCell>
                     <TableCell>{project.framework}</TableCell>
                     <TableCell>
-                      <Badge>{project.status}</Badge>
+                      <StatusBadge status={project.status} variant="project" />
                     </TableCell>
                     <TableCell>
                       <Link to={`/manager/projects/${project.project_id}`}>

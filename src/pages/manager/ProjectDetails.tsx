@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { StatusBadge } from "@/components/ui/status-badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -63,9 +64,9 @@ export default function ProjectDetails() {
           <CardDescription>Client: {project.client_name}</CardDescription>
         </CardHeader>
         <CardContent className="flex gap-4">
-          <Badge>{project.framework}</Badge>
-          <Badge variant="secondary">{project.status}</Badge>
-          <Badge variant="outline">{project.category}</Badge>
+          <Badge className="whitespace-nowrap">{project.framework}</Badge>
+          <StatusBadge status={project.status} variant="project" />
+          <Badge variant="outline" className="whitespace-nowrap">{project.category}</Badge>
         </CardContent>
       </Card>
 
@@ -110,9 +111,11 @@ export default function ProjectDetails() {
                     <AvatarImage src={`https://i.pravatar.cc/150?u=${member.employee_id}`} />
                     <AvatarFallback>{member.name.charAt(0)}</AvatarFallback>
                   </Avatar>
-                  <div>
-                    <p className="font-medium">{member.name}</p>
-                    <p className="text-xs text-muted-foreground">{member.email}</p>
+                  <div className="min-w-0 flex-1">
+                    <p className="font-medium truncate">{member.name}</p>
+                    <p className="text-xs text-muted-foreground truncate" title={member.email}>
+                      {member.email}
+                    </p>
                   </div>
                 </div>
               ))}
